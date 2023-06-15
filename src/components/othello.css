@@ -1,0 +1,364 @@
+.othello-game {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding-right: 3%;
+
+}
+
+.score {
+  width: 120px;
+  height: 300px;
+  min-height: 300px;
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 50px 0;
+  margin-right: 20px;
+}
+
+.passed {
+  animation: shake 40ms ease-in-out 20 alternate;
+  visibility: hidden;
+}
+
+@keyframes shake {
+  from {
+    visibility: visible;
+    transform: rotateZ(-5deg);
+  }
+
+  to {
+    visibility: visible;
+    transform: rotateZ(5deg);
+  }
+}
+
+.points b {
+  display: none;
+}
+
+.passed b {
+  display: block;
+  font-size: 2em;
+  font-weight: 900;
+  color: rgba(48, 116, 233, 0.85);
+  text-shadow: 5px 5px rgba(124, 124, 124, 0.29);
+  -webkit-text-stroke: #2e3df3;
+  -webkit-text-stroke-width: 2px;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0;
+  margin-bottom: 20px;
+  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.othello-utils {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.points span {
+  font-size: 2.2em;
+  font-weight: 600;
+  color: var(--tcolor);
+  margin: 0 30px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.demopiece {
+  background: var(--blackColor);
+  height: 50px;
+  width: 50px;
+  margin: 0 10px;
+  border-radius: 50%;
+  box-shadow: 3px 3px 8px var(--pShadow);
+}
+
+.gamescreen {
+  display: flex;
+  align-self: flex-start;
+  width: max-content;
+}
+
+.oth-options {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+.playoption {
+  padding: 5px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+  color: var(--tcolor);
+  font-size: 0.84em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playoption .svgcontainer {
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  border-radius: 50%;
+  border: 3px solid black;
+  background: var(--svgBack);
+  margin-bottom: 3px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.board {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  width: 550px;
+  height: 550px;
+  border: 10px solid var(--boardRim);
+  background: var(--boardRim);
+}
+
+/* Vertical numbering */
+.vertical-numbering {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 520px;
+  width: 0px;
+  padding: 15px 0;
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--tcolor);
+  text-align: center;
+  left: -37px;
+}
+
+.horizontal-numbering {
+  grid-template-columns: repeat(8, 1fr);
+  margin-top: 565px;
+  position: absolute;
+  display: grid;
+  justify-content: space-between;
+  width: 555px;
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--tcolor);
+  text-align: center;
+  align-items: center;
+  left: -2px;
+}
+
+.box {
+  margin: -0.1px;
+  margin-bottom: -0.2px;
+  position: relative;
+  background: #0ac089;
+  border: 2px solid #1c242e;
+  display: grid;
+  place-items: center;
+}
+
+.last {
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  background: rgba(254, 29, 29, 0.9);
+  border-radius: 50%;
+}
+
+.avail {
+  position: relative;
+  width: 15%;
+  height: 15%;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 1px 1px 4px rgba(101, 101, 101, 0.51);
+  border-radius: 50%;
+}
+
+.avail-black {
+  background: rgba(54, 54, 54, 0.5);
+}
+
+.piece {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  transform-style: preserve-3d;
+  transition: all 0.2s ease-in-out;
+}
+
+.piece>* {
+  position: absolute;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.55);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  backface-visibility: hidden;
+}
+
+.white {
+  background: #fefefe;
+}
+
+.black {
+  background: #222;
+  transform: rotateY(180deg);
+}
+
+.back {
+  transform: perspective(1000px) rotateY(180deg);
+}
+
+@media only screen and (max-width: 640px) {
+  .othello-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 500px;
+    height: auto;
+    box-sizing: border-box;
+    padding: 0 0;
+    overflow: hidden;
+  }  
+  
+  .score {
+    width: 450px;
+    height: 50px;
+    align-self: center;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    top: 10%;
+    transform: translateX(5%);
+    overflow: hidden;
+  }
+  
+  .points {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0;
+    margin-bottom: 20px;
+    height: 200px;
+    max-width: 550px;
+    max-height: 150px;
+    overflow-x: hidden;
+  }
+
+  .points span {
+    font-size: 2.2em;
+    font-weight: 600;
+    color: var(--tcolor);
+    margin: 0 30px;
+    text-align: center;
+    line-height: 50px;
+    min-width: 40px;
+  }
+  
+  .board {
+    position: fixed;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    width: 450px;
+    height: 450px;
+    border: 10px solid var(--boardRim);
+    background: var(--boardRim);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+  .oth-options {
+    align-self: center;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    margin-top: -100%;
+    z-index: 1;
+    position: relative;
+    width: 50vw;
+    left: 50%;
+    margin-left: -16vw;
+  }
+
+  .vertical-numbering {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 430px;
+    width: 0px;
+    padding: 19px 0;
+    margin-top: -7px;
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--tcolor);
+    text-align: center;
+    left: -37px;
+  }
+  
+  .horizontal-numbering {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    margin-top: 465px;
+    justify-content: space-between;
+    width: 460px;
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--tcolor);
+    text-align: center;
+    align-items: center;
+    left: -3px;
+  }  
+  
+  .playoption {
+    align-self: center;
+    min-width: 80px;
+  }
+  
+  .playoption .svgcontainer {
+    align-self: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 3px solid black;
+    background: var(--svgBack);
+    margin-bottom: 3px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+}
